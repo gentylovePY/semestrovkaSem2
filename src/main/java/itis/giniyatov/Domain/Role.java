@@ -7,7 +7,8 @@ import javax.persistence.*;
 import java.util.Set;
 
 public enum Role implements GrantedAuthority {
-    USER;
+    USER,
+    ADMIN;
 
     @Override
     public String getAuthority() {
