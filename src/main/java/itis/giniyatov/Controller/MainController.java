@@ -1,8 +1,9 @@
 package itis.giniyatov.Controller;
 
+
 import itis.giniyatov.Domain.Message;
 import itis.giniyatov.Domain.User;
-import itis.giniyatov.Repository.MessageRepository;
+import itis.giniyatov.repos.MessageRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -21,7 +22,8 @@ import java.util.UUID;
 @Controller
 public class MainController {
     @Autowired
-    private MessageRepository messageRepo;
+    private MessageRepo messageRepo;
+
     @Value("${upload.path}")
     private String uploadPath;
 
@@ -33,6 +35,7 @@ public class MainController {
     @GetMapping("/main")
     public String main(@RequestParam(required = false, defaultValue = "") String filter, Model model) {
         Iterable<Message> messages = messageRepo.findAll();
+
         if (filter != null && !filter.isEmpty()) {
             messages = messageRepo.findByTag(filter);
         } else {
@@ -40,7 +43,7 @@ public class MainController {
         }
 
         model.addAttribute("messages", messages);
-        model.addAttribute("filter",filter);
+        model.addAttribute("filter", filter);
 
         return "main";
     }
@@ -50,16 +53,22 @@ public class MainController {
             @AuthenticationPrincipal User user,
             @RequestParam String text,
             @RequestParam String tag, Map<String, Object> model,
-            @RequestParam ("file") MultipartFile file) throws IOException {
+            @RequestParam("file") MultipartFile file
+    ) throws IOException {
         Message message = new Message(text, tag, user);
-        if (file != null && !file.getOriginalFilename().isEmpty()){
-           File uploadDir  = new File(uploadPath);
-            if(!uploadDir.exists()){
+
+        if (file != null && !file.getOriginalFilename().isEmpty()) {
+            File uploadDir = new File(uploadPath);
+
+            if (!uploadDir.exists()) {
                 uploadDir.mkdir();
             }
+
             String uuidFile = UUID.randomUUID().toString();
-            String resultFilename =uuidFile+"."+file.getOriginalFilename();
-            file.transferTo(new File (uploadPath+"/"+resultFilename));
+            String resultFilename = uuidFile + "." + file.getOriginalFilename();
+
+            file.transferTo(new File(uploadPath + "/" + resultFilename));
+
             message.setFilename(resultFilename);
         }
 
@@ -71,6 +80,4 @@ public class MainController {
 
         return "main";
     }
-
-
 }

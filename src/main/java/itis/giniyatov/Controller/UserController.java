@@ -3,7 +3,7 @@ package itis.giniyatov.Controller;
 
 import itis.giniyatov.Domain.Role;
 import itis.giniyatov.Domain.User;
-import itis.giniyatov.Repository.UserRepository;
+import itis.giniyatov.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @PreAuthorize("hasAuthority('ADMIN')")
 public class UserController {
     @Autowired
-    private UserRepository userRepo;
+    private UserRepo userRepo;
 
     @GetMapping
     public String userList(Model model) {
