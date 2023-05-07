@@ -15,6 +15,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.postgresql:postgresql:42.5.4")
     implementation("org.springframework.boot:spring-boot-starter-security")
+    compileOnly("org.projectlombok:lombok:1.18.24")
+    annotationProcessor("org.projectlombok:lombok:1.18.24")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.2")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.2")
     implementation("org.springframework.boot:spring-boot-starter-web")
@@ -23,9 +25,20 @@ dependencies {
     implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity6:3.1.1.RELEASE")
     implementation("org.springframework.security:spring-security-test")
     implementation("org.springframework.boot:spring-boot-starter-test")
+    implementation("org.springframework.boot:spring-boot-starter-websocket")
+    implementation("org.webjars:stomp-websocket:2.3.4")
+    implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
+    implementation("org.webjars:sockjs-client:1.5.1")
     implementation("org.springframework.boot:spring-boot-starter-mail")
     implementation ("org.freemarker:freemarker:2.3.31")
     implementation ("org.springframework.boot:spring-boot-starter-freemarker")
+    implementation("org.springframework.boot:spring-boot-starter-websocket")
+
+    implementation("org.webjars:jquery:3.6.0")
+    implementation("org.webjars:bootstrap:4.6.0")
+    implementation("org.webjars:webjars-locator-core:0.46")
+    implementation("org.webjars:stomp-websocket:2.3.4")
+    implementation("org.webjars:sockjs-client:1.5.1")
 
 }
 
