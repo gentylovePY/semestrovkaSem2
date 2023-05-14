@@ -1,4 +1,4 @@
-package itis.giniyatov.Domain;
+package itis.giniyatov.Model;
 
 import java.util.Date;
 

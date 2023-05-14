@@ -1,7 +1,7 @@
 package itis.giniyatov.repos;
 
 
-import itis.giniyatov.Domain.User;
+import itis.giniyatov.Model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepo extends JpaRepository<User, Long> {

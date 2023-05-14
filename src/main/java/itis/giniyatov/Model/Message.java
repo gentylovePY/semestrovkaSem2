@@ -1,4 +1,4 @@
-package itis.giniyatov.Domain;
+package itis.giniyatov.Model;
 
 import org.hibernate.validator.constraints.Length;
 

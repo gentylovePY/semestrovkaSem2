@@ -1,8 +1,8 @@
 package itis.giniyatov.Controller;
 
 
-import itis.giniyatov.Domain.Message;
-import itis.giniyatov.Domain.User;
+import itis.giniyatov.Model.Message;
+import itis.giniyatov.Model.User;
 import itis.giniyatov.repos.MessageRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

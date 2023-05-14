@@ -1,7 +1,7 @@
 package itis.giniyatov.repos;
 
 
-import itis.giniyatov.Domain.Message;
+import itis.giniyatov.Model.Message;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

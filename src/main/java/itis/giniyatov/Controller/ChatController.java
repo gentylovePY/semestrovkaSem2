@@ -1,7 +1,7 @@
 package itis.giniyatov.Controller;
 
-import itis.giniyatov.Domain.MessageChat;
-import itis.giniyatov.Domain.OutputMessage;
+import itis.giniyatov.Model.MessageChat;
+import itis.giniyatov.Model.OutputMessage;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;

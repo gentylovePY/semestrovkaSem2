@@ -1,14 +1,13 @@
 package itis.giniyatov.Service;
 
 
-import itis.giniyatov.Domain.Role;
-import itis.giniyatov.Domain.User;
+import itis.giniyatov.Model.Role;
+import itis.giniyatov.Model.User;
 import itis.giniyatov.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 

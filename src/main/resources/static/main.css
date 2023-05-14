@@ -3,3 +3,44 @@
 .space-bottom15 { margin-bottom: 15px; }
 .space-bottom20 { margin-bottom: 20px; }
 .space-bottom30 { margin-bottom: 30px; }
+body {
+    background-color: #f2f2f2;
+}
+html, body {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+#main-content {
+    padding: 20px;
+}
+.btn-default {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    color: #fff;
+}
+
+select {
+    background-color: #fff;
+    color: #6c757d;
+    border-color: #6c757d;
+}
+
+/* Change the color of the selected option */
+option:checked {
+    background-color: #6c757d;
+    color: #fff;
+}
+.row:not(:last-child) {
+    margin-bottom: 10px;
+}
+label {
+    font-weight: bold;
+    color: #6c757d;
+}
+th {
+    background-color: #6c757d;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    border: none;
+}

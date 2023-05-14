@@ -1,7 +1,7 @@
 package itis.giniyatov.Controller;
 
 
-import itis.giniyatov.Domain.User;
+import itis.giniyatov.Model.User;
 import itis.giniyatov.Service.UserSevice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

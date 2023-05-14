@@ -1,4 +1,4 @@
-package itis.giniyatov.Domain;
+package itis.giniyatov.Model;
 
 /*
  * Message received from client.
