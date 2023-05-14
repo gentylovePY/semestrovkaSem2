@@ -1,59 +1,64 @@
-let stompClient = null;
+$(function() {
+    'use strict';
 
-function setConnected(connected) {
-    $("#connect").prop("disabled", connected);
-    $("#disconnect").prop("disabled", !connected);
-    if (connected) {
-        $("#conversation").show();
-    } else {
-        $("#conversation").hide();
+    var client;
+
+    function showMessage(mesg)
+    {
+        $('#messages').append('<tr>' +
+            '<td>' + mesg.from + '</td>' +
+            '<td>' + mesg.topic + '</td>' +
+            '<td>' + mesg.message + '</td>' +
+            '<td>' + mesg.time + '</td>' +
+            '</tr>');
     }
-    $("#messages").html("");
-}
 
-function connect() {
-    console.log("Trying to connect");
-    let socket = new SockJS("/message-websocket");
-    stompClient = Stomp.over(socket);
-    stompClient.connect({}, function (frame) {
-            setConnected(true);
-            console.log("Connected: " + frame);
-            stompClient.subscribe('/topic/message', function (message) {
-                let mess = JSON.parse(message.body);
-                showMessage(mess.name + ': ' + mess.message);
-            })
+    function setConnected(connected) {
+        $("#connect").prop("disabled", connected);
+        $("#disconnect").prop("disabled", !connected);
+        $('#from').prop('disabled', connected);
+        $('#text').prop('disabled', !connected);
+        if (connected) {
+            $("#conversation").show();
+            $('#text').focus();
         }
-    )
-}
-
-function disconnect() {
-    if (stompClient != null) {
-        stompClient.disconnect();
+        else $("#conversation").hide();
+        $("#messages").html("");
     }
-    setConnected(false);
-    console.log("Disconnected");
-}
 
-function sendMessage() {
-    showMessage($("#name").val() + ': ' + $("#message").val());
-    stompClient.send("/app/message", {}, JSON.stringify({'content': $("#message").val(), 'name': $("#name").val()}))
-}
-
-function showMessage(message) {
-    $("#messages").append("<tr><td>" + message + "</td></tr>")
-}
-
-$(function () {
     $("form").on('submit', function (e) {
         e.preventDefault();
     });
-    $("#connect").click(function () {
-        connect();
+
+    $('#from').on('blur change keyup', function(ev) {
+        $('#connect').prop('disabled', $(this).val().length == 0 );
     });
-    $("#disconnect").click(function () {
-        disconnect();
+    $('#connect,#disconnect,#text').prop('disabled', true);
+
+    $('#connect').click(function() {
+        client = Stomp.over(new SockJS('/chat'));
+        client.connect({}, function (frame) {
+            setConnected(true);
+            client.subscribe('/topic/messages', function (message) {
+                showMessage(JSON.parse(message.body));
+            });
+        });
     });
-    $("#send").click(function () {
-        sendMessage();
+
+    $('#disconnect').click(function() {
+        if (client != null) {
+            client.disconnect();
+            setConnected(false);
+        }
+        client = null;
     });
-})
+
+    $('#send').click(function() {
+        var topic = $('#topic').val();
+        client.send("/app/chat/" + topic, {}, JSON.stringify({
+            from: $("#from").val(),
+            text: $('#text').val(),
+        }));
+        $('#text').val("");
+    });
+});

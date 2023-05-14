@@ -23,10 +23,14 @@ public class RegistrationController {
     public String registration() {
         return "registration";
     }
+    @GetMapping("/chat")
+    public String chat() {
+        return "chat";
+    }
 
     @PostMapping("/registration")
     public String addUser(@Valid User user, BindingResult bindingResult, Model model) {
-        if (user.getPassword() != null && !user.getPassword().equals(user.getPassword2())) {
+        if (user.getPassword() != null ) {
             model.addAttribute("passwordError", "Passwords are different!");
         }
 

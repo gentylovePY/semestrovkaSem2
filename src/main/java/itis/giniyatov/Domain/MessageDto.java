@@ -10,6 +10,11 @@ public class MessageDto {
     private String message;
     private String name;
 
+
+
+
+
+
     public String getMessage() {
         return message;
     }
