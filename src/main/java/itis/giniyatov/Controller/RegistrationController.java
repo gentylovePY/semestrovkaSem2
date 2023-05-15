@@ -23,10 +23,7 @@ public class RegistrationController {
     public String registration() {
         return "registration";
     }
-    @GetMapping("/chat")
-    public String chat() {
-        return "chat";
-    }
+
 
     @PostMapping("/registration")
     public String addUser(@Valid User user, BindingResult bindingResult, Model model) {

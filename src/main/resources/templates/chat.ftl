@@ -16,40 +16,28 @@
       <form class="form-inline">
         <div class="form-group">
           <label for="from">Name?</label>
-          <input type="text" id="from" class="form-control"
-                 placeholder="enter your name...">
+          <input type="text" id="from" class="form-control" placeholder="enter your name...">
         </div>
-        <button id="connect"
-                class="btn btn-default"
-                type="submit">Connect</button>
-        <button id="disconnect"
-                class="btn btn-default"
-                type="submit"
-                disabled="disabled">Disconnect</button>
+        <input type="hidden" name="_csrf" value="${_csrf.token}" />
+        <button id="connect" class="btn btn-default" type="submit">Connect</button>
+        <button id="disconnect" class="btn btn-default" type="submit" disabled="disabled">Disconnect</button>
       </form>
     </div>
   </div>
   <div class="row space-bottom10">
     <form>
       <div class="col-md-2">
-        <select name="topic"
-                id="topic"
-                class="form-control">
+        <select name="topic" id="topic" class="form-control">
           <option>Lifestyle</option>
           <option>Travel</option>
           <option>Career</option>
         </select>
       </div>
       <div class="col-md-6">
-        <input type="text"
-               id="text"
-               class="form-control"
-               placeholder="enter messageChat ...">
+        <input type="text" id="text" class="form-control" placeholder="enter messageChat ...">
       </div>
       <div class="col-md-4">
-        <button id="send"
-                class="btn btn-default"
-                type="submit">Send</button>
+        <button id="send" class="btn btn-default" type="submit">Send</button>
       </div>
     </form>
   </div>
@@ -70,5 +58,28 @@
     </div>
   </div>
 </div>
+
+<script>
+  $(document).ready(function() {
+    $("form").submit(function(event) {
+      event.preventDefault();
+      var name = $("#from").val();
+      console.log(name);
+      $.ajax({
+        type: "POST",
+        url: "/send-message",
+        data: JSON.stringify({ name: name }),
+        contentType: "application/json",
+        success: function(response) {
+          console.log("Message sent successfully");
+        },
+        error: function(error) {
+          console.error("Error sending message: " + error);
+        }
+      });
+    });
+  });
+</script>
+
 </body>
 </html>

@@ -1,12 +1,17 @@
 package itis.giniyatov.Model;
 
-/*
- * Message received from client.
- *
- * @Author Jay Sridhar
- */
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class MessageChat
+
 {
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Long id;
     private String from;
     private String text;
 
@@ -36,5 +41,13 @@ public class MessageChat
     public void setText(String text)
     {
         this.text = text;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

@@ -6,15 +6,16 @@ import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
-/*
- * Chat Controller listens for chat topic and responds with a message.
- *
- * @Author Jay Sridhar
- */
+
 @Controller
 public class ChatController 
 {
+    @GetMapping("/chat")
+    public String chat() {
+        return "chat";
+    }
     @MessageMapping("/chat/{topic}")
     @SendTo("/topic/messages")
     public OutputMessage send(@DestinationVariable("topic") String topic,
@@ -22,4 +23,10 @@ public class ChatController
     {
 	return new OutputMessage(messageChat.getFrom(), messageChat.getText(), topic);
     }
+
+
+
 }
+
+
+

@@ -26,21 +26,15 @@ dependencies {
     implementation("org.springframework.security:spring-security-test")
     implementation("org.springframework.boot:spring-boot-starter-test")
     implementation("org.springframework.boot:spring-boot-starter-websocket")
-    implementation("org.webjars:stomp-websocket:2.3.4")
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
-    implementation("org.webjars:sockjs-client:1.5.1")
     implementation("org.springframework.boot:spring-boot-starter-mail")
     implementation ("org.freemarker:freemarker:2.3.31")
     implementation ("org.springframework.boot:spring-boot-starter-freemarker")
     implementation("org.springframework.boot:spring-boot-starter-websocket")
-// https://mavenlibs.com/maven/dependency/org.webjars/stomp-websocket
-    // https://mavenlibs.com/maven/dependency/org.webjars/sockjs-client
-    implementation("org.webjars:sockjs-client:1.5.1")
     implementation("org.webjars:stomp-websocket:2.3.4")
     implementation("org.webjars:jquery:3.6.0")
     implementation("org.webjars:bootstrap:4.6.0")
     implementation("org.webjars:webjars-locator-core:0.46")
-    implementation("org.webjars:stomp-websocket:2.3.4")
     implementation("org.webjars:sockjs-client:1.5.1")
 
 }
