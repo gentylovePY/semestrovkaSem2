@@ -1,4 +1,4 @@
-<#import "parts/mainFtl.ftl" as c>
+<#import "pattern/mainFtl.ftl" as c>
 
 <@c.page>
 User editor

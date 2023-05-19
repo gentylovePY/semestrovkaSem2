@@ -1,5 +1,5 @@
-<#import "parts/mainFtl.ftl" as c>
-<#import "parts/login.ftl" as l>
+<#import "pattern/mainFtl.ftl" as c>
+<#import "pattern/login.ftl" as l>
 
 <@c.page>
 <div class="mb-1">Add new user</div>

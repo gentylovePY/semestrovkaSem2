@@ -11,7 +11,7 @@ public class MessageAjaxController {
     @PostMapping("/send-message")
     @ResponseBody
     public String sendMessage(@RequestBody MessageRequest request) {
-        // Получение данных из AJAX-запроса
+
         String name = request.getName();
         return "Message sent successfully";
     }
