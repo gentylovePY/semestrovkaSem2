@@ -2,9 +2,6 @@
 
 <@c.page>
 List of users
-
-
-
         <tr>
             <th>Name</th>
             <th>Role</th>

@@ -30,14 +30,14 @@ public class MailConfig {
 
     @Bean
     public JavaMailSender getMailSender() {
-        JavaMailSenderImpl senderemail = new JavaMailSenderImpl();
-        senderemail.setHost(hostname);
-        senderemail.setPort(port);
-        senderemail.setUsername(username);
-        senderemail.setPassword(password);
-        Properties properties = senderemail.getJavaMailProperties();
+        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+        mailSender.setHost(hostname);
+        mailSender.setPort(port);
+        mailSender.setUsername(username);
+        mailSender.setPassword(password);
+        Properties properties = mailSender.getJavaMailProperties();
         properties.setProperty("mail.transport.protocol", protocol);
         properties.setProperty("mail.debug", debug);
-        return senderemail;
+        return mailSender;
     }
 }
