@@ -1,11 +1,11 @@
-package itis.giniyatov.Config;
+package itis.giniyatov.Configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
 
 @Configuration
- class Logger {
+ class LoggerConfig {
 
 @Bean
     public CommonsRequestLoggingFilter commonsRequestLoggingFilter(){

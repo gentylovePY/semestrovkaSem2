@@ -8,11 +8,11 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class ControllerUtils {
-    static Map<String, String> getErrors(BindingResult bindingResult) {
+    static Map<String, String> getErrors(BindingResult result) {
         Collector<FieldError, ?, Map<String, String>> collector = Collectors.toMap(
                 fieldError -> fieldError.getField() + "Error",
                 FieldError::getDefaultMessage
         );
-        return bindingResult.getFieldErrors().stream().collect(collector);
+        return result.getFieldErrors().stream().collect(collector);
     }
 }

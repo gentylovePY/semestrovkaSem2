@@ -28,42 +28,40 @@ public class MainController {
     private String uploadPath;
 
     @GetMapping("/")
-    public String greeting(Map<String, Object> model) {
-        return "greeting";
+    public String firstPage(Map<String, Object> model) {
+        return "FirstPage";
     }
 
 
 
     @GetMapping("/main")
-    public String main(@RequestParam(required = false, defaultValue = "") String filter, Model model) {
+    public String mainPage(@RequestParam(required = false, defaultValue = "") String check, Model model) {
         Iterable<Message> messages = messageRepo.findAll();
-
-        if (filter != null && !filter.isEmpty()) {
-            messages = messageRepo.findByTag(filter);
+        if (check != null && !check.isEmpty()) {
+            messages = messageRepo.findByTag(check);
         } else {
             messages = messageRepo.findAll();
         }
 
         model.addAttribute("messages", messages);
-        model.addAttribute("filter", filter);
+        model.addAttribute("filter", check);
 
         return "main";
     }
 
 
-
     @PostMapping("/main")
     public String add(
-            @AuthenticationPrincipal User user,
+            @AuthenticationPrincipal User usr,
             @Valid Message message,
-            BindingResult bindingResult,
+            BindingResult result,
             Model model,
             @RequestParam("file") MultipartFile file
     ) throws IOException {
-        message.setAuthor(user);
+        message.setAuthor(usr);
 
-        if (bindingResult.hasErrors()) {
-            Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
+        if (result.hasErrors()) {
+            Map<String, String> errorsMap = ControllerUtils.getErrors(result);
 
             model.mergeAttributes(errorsMap);
             model.addAttribute("message", message);
@@ -75,8 +73,8 @@ public class MainController {
                     uploadDir.mkdir();
                 }
 
-                String uuidFile = UUID.randomUUID().toString();
-                String resultFilename = uuidFile + "." + file.getOriginalFilename();
+                String uuidfile = UUID.randomUUID().toString();
+                String resultFilename = uuidfile + "." + file.getOriginalFilename();
                 System.out.println("112211"+uploadPath);
 
                 file.transferTo(new File(uploadPath + "/" + resultFilename));
@@ -88,9 +86,7 @@ public class MainController {
 
             messageRepo.save(message);
         }
-
         Iterable<Message> messages = messageRepo.findAll();
-
         model.addAttribute("messages", messages);
 
         return "main";

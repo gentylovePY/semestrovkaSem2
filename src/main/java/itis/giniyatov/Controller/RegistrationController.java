@@ -26,16 +26,14 @@ public class RegistrationController {
 
 
     @PostMapping("/registration")
-    public String addUser(@Valid User user, BindingResult bindingResult, Model model) {
+    public String addUser(@Valid User user, BindingResult result, Model model) {
         if (user.getPassword() != null ) {
             model.addAttribute("passwordError", "Passwords are different!");
         }
 
-        if (bindingResult.hasErrors()) {
-            Map<String, String> errors = ControllerUtils.getErrors(bindingResult);
-
+        if (result.hasErrors()) {
+            Map<String, String> errors = ControllerUtils.getErrors(result);
             model.mergeAttributes(errors);
-
             return "registration";
         }
 
@@ -48,7 +46,7 @@ public class RegistrationController {
     }
 
     @GetMapping("/activate/{code}")
-    public String activate(Model model, @PathVariable String code) {
+    public String activateCode(Model model, @PathVariable String code) {
         boolean isActivated = userSevice.activateUser(code);
 
         if (isActivated) {

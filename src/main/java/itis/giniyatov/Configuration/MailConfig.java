@@ -1,4 +1,4 @@
-package itis.giniyatov.Config;
+package itis.giniyatov.Configuration;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -11,7 +11,7 @@ import java.util.Properties;
 @Configuration
 public class MailConfig {
     @Value("${spring.mail.host}")
-    private String host;
+    private String hostname;
 
     @Value("${spring.mail.username}")
     private String username;
@@ -30,18 +30,14 @@ public class MailConfig {
 
     @Bean
     public JavaMailSender getMailSender() {
-        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-
-        mailSender.setHost(host);
-        mailSender.setPort(port);
-        mailSender.setUsername(username);
-        mailSender.setPassword(password);
-
-        Properties properties = mailSender.getJavaMailProperties();
-
+        JavaMailSenderImpl senderemail = new JavaMailSenderImpl();
+        senderemail.setHost(hostname);
+        senderemail.setPort(port);
+        senderemail.setUsername(username);
+        senderemail.setPassword(password);
+        Properties properties = senderemail.getJavaMailProperties();
         properties.setProperty("mail.transport.protocol", protocol);
         properties.setProperty("mail.debug", debug);
-
-        return mailSender;
+        return senderemail;
     }
 }
