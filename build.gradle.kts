@@ -39,9 +39,7 @@ dependencies {
 
 }
 
-tasks.getByName<Test>("test") {
-    useJUnitPlatform()
-}
+
 tasks.jar {
     enabled = false
     manifest {
